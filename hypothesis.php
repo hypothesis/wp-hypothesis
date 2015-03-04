@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) or die ( 'Cannot access pages directly.' );
  */
 function add_hypothesis() {
 	if ( !is_admin() ) 
-        wp_enqueue_script( 'hypothesis', 'https://hypothes.is/app/embed.js', '', false, true );
+        wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
 }
 
 add_action( 'init', 'add_hypothesis' );
