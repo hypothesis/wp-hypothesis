@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hypothesis
- * @version 0.1.1
+ * @version 0.1.2
  */
 /*
 Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.1.1
+Version: 0.1.2
 Author URI: http://hypothes.is/
 */
 
