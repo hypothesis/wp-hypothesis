@@ -3,7 +3,7 @@ Contributors: timmmmyboy, BigBlueHat
 Tags: hypothesis, annotation, comments
 Requires at least: 3.0.1
 Tested up to: 3.6
-Stable tag: 0.2.0-dev
+Stable tag: 0.2.0
 License: BSD
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -20,6 +20,15 @@ Hypothesis is a web annotation tool that allows users to provide commentary, ref
 3. You're done! The frontend of your site should now be enabled to use Hypothesis.
 
 == Changelog ==
+
+= 0.2.0 =
+Introduce settings panel and enabling/disabling functionality.
+ - Adds Hypothesis settings panel
+ - Admins can now configure which pages, posts, or categories
+   to load Hypothes.is on.
+
+= 0.1.2 =
+Bumped version to work out release process. No code changes.
 
 = 0.1.1 =
 Relicensed under the BSD to match other Hypothesis projects.
