@@ -121,7 +121,7 @@ class HypothesisSettingsPage
 
 		add_settings_field(
 			'post_ids_override', // ID
-			'Disallow on posts (list of comma seperated post ids, no spaces)', // Title
+			'Disallow on posts (list of comma-separated post ids, no spaces)', // Title
 			array( $this, 'post_ids_override_callback' ), // Callback
 			'hypothesis-setting-admin', // Page
 			'setting_section_id' // Section
@@ -129,7 +129,7 @@ class HypothesisSettingsPage
 
 		add_settings_field(
 			'page_ids_override', // ID
-			'Disallow on pages (list of comma seperated page ids, no spaces)', // Title
+			'Disallow on pages (list of comma-separated page ids, no spaces)', // Title
 			array( $this, 'page_ids_override_callback' ), // Callback
 			'hypothesis-setting-admin', // Page
 			'setting_section_id' // Section
@@ -137,7 +137,7 @@ class HypothesisSettingsPage
 
 		add_settings_field(
 			'category_ids_override', // ID
-			'Disallow on categories (list of comma category ids, no spaces)', // Title
+			'Disallow on categories (list of comma-separated category ids, no spaces)', // Title
 			array( $this, 'category_ids_override_callback' ), // Callback
 			'hypothesis-setting-admin', // Page
 			'setting_section_id' // Section
