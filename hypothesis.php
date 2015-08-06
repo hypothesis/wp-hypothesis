@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hypothesis
- * @version 0.2.0
+ * @version 0.2.1
  */
 /*
 Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.2.0
+Version: 0.2.1
 Author URI: http://hypothes.is/
 */
 
@@ -120,6 +120,22 @@ class HypothesisSettingsPage
 		);
 
 		add_settings_field(
+			'post_ids_show_h', // ID
+			'Allow on posts (list of comma-separated post ids, no spaces)', // Title
+			array( $this, 'post_ids_show_h_callback' ), // Callback
+			'hypothesis-setting-admin', // Page
+			'setting_section_id' // Section
+		);
+
+		add_settings_field(
+			'page_ids_show_h', // ID
+			'Allow on pages (list of comma-separated page ids, no spaces)', // Title
+			array( $this, 'page_ids_show_h_callback' ), // Callback
+			'hypothesis-setting-admin', // Page
+			'setting_section_id' // Section
+		);
+
+		add_settings_field(
 			'post_ids_override', // ID
 			'Disallow on posts (list of comma-separated post ids, no spaces)', // Title
 			array( $this, 'post_ids_override_callback' ), // Callback
@@ -163,6 +179,12 @@ class HypothesisSettingsPage
 
 		if( isset( $input['allow-on-pages'] ) )
 			$new_input['allow-on-pages'] = absint($input['allow-on-pages']);
+
+		if( isset( $input['post_ids_show_h'] ) )
+			$new_input['post_ids_show_h'] = explode(',', esc_attr($input['post_ids_show_h']));
+
+		if( isset( $input['page_ids_show_h'] ) )
+			$new_input['page_ids_show_h'] = explode(',', esc_attr($input['page_ids_show_h']));
 
 		if( isset( $input['post_ids_override'] ) )
 			$new_input['post_ids_override'] = explode(',', esc_attr($input['post_ids_override']));
@@ -234,6 +256,29 @@ class HypothesisSettingsPage
 	/**
 	* Get the settings option array and print one of its values
 	*/
+	public function page_ids_show_h_callback()
+	{
+		printf(
+			'<input type="text" id="page_ids_show_h" name="wp_hypothesis_options[page_ids_show_h]" value="%s" />',
+			isset( $this->options['page_ids_show_h'] ) ? esc_attr( implode(',', $this->options['page_ids_show_h'])) : ''
+		);
+	}
+
+	/**
+	* Get the settings option array and print one of its values
+	*/
+	public function post_ids_show_h_callback()
+	{
+		printf(
+			'<input type="text" id="post_ids_show_h" name="wp_hypothesis_options[post_ids_show_h]" value="%s" />',
+			isset( $this->options['post_ids_show_h'] ) ? esc_attr( implode(',', $this->options['post_ids_show_h'])) : ''
+		);
+	}
+
+
+	/**
+	* Get the settings option array and print one of its values
+	*/
 	public function post_ids_override_callback()
 	{
 		printf(
@@ -276,17 +321,27 @@ add_action('wp', 'add_hypothesis');
 
 function add_hypothesis($param) {
 	$options = get_option( 'wp_hypothesis_options' );
+
 	if (isset($options['allow-on-blog-page']) && is_home()):
 		wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
+
 	elseif (isset($options['allow-on-front-page']) && is_front_page()):
 		wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
+
+	elseif (isset($options['post_ids_show_h']) && is_single($options['post_ids_show_h'])):
+		wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
+
+	elseif (isset($options['page_ids_show_h']) && is_page($options['page_ids_show_h'])):
+		wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
+
 	elseif (isset($options['allow-on-posts']) && is_single()):
 		if (isset($options['post_ids_override']) && is_single($options['post_ids_override']));
 		elseif (isset($options['category_ids_override']) && in_category($options['category_ids_override']));
 		else
 			wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
+
 	elseif (isset($options['allow-on-pages']) && is_page() && !is_front_page() && !is_home()):
-	if (isset($options['page_ids_override']) && is_page($options['page_ids_override']));
+		if (isset($options['page_ids_override']) && is_page($options['page_ids_override']));
 		else
 			wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
 	endif;
