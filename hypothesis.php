@@ -150,14 +150,6 @@ class HypothesisSettingsPage
 			'hypothesis-setting-admin', // Page
 			'setting_section_id' // Section
 		);
-
-		add_settings_field(
-			'category_ids_override', // ID
-			'Disallow on categories (list of comma-separated category ids, no spaces)', // Title
-			array( $this, 'category_ids_override_callback' ), // Callback
-			'hypothesis-setting-admin', // Page
-			'setting_section_id' // Section
-		);
 	}
 
 	/**
@@ -191,9 +183,6 @@ class HypothesisSettingsPage
 
 		if( isset( $input['page_ids_override'] ) )
 			$new_input['page_ids_override'] = explode(',', esc_attr($input['page_ids_override']));
-
-		if( isset( $input['category_ids_override'] ) )
-			$new_input['category_ids_override'] = explode(',', esc_attr($input['category_ids_override']));
 
 		return $new_input;
 	}
@@ -297,17 +286,6 @@ class HypothesisSettingsPage
 			isset( $this->options['page_ids_override'] ) ? esc_attr( implode(',',$this->options['page_ids_override'])) : ''
 		);
 	}
-
-	/**
-	* Get the settings option array and print one of its values
-	*/
-	public function category_ids_override_callback()
-	{
-		printf(
-			'<input type="text" id="category_ids_override" name="wp_hypothesis_options[category_ids_override]" value="%s" />',
-			isset( $this->options['category_ids_override'] ) ? esc_attr( implode(',',$this->options['category_ids_override'])) : ''
-		);
-	}
 }
 
 if( is_admin() )
@@ -336,7 +314,6 @@ function add_hypothesis($param) {
 
 	elseif (isset($options['allow-on-posts']) && is_single()):
 		if (isset($options['post_ids_override']) && is_single($options['post_ids_override']));
-		elseif (isset($options['category_ids_override']) && in_category($options['category_ids_override']));
 		else
 			wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
 
