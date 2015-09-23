@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hypothesis
- * @version 0.3.0
+ * @version 0.4.0
  */
 /*
 Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.3.0
+Version: 0.4.0
 Author URI: http://hypothes.is/
 */
 
@@ -80,10 +80,40 @@ class HypothesisSettingsPage
 			array( $this, 'sanitize' ) // Sanitize
 		);
 
+		/**
+		 * Hypothesis Settings
+		 */
 		add_settings_section(
-			'setting_section_id', // ID
+			'setting_section_id2', // ID
 			'Hypothesis Settings', // Title
 			array( $this, 'print_section_info' ), // Callback
+			'hypothesis-setting-admin' // Page
+		);
+
+		add_settings_field(
+			'highlights-on-by-default',
+			'Highlights on by default',
+			array( $this, 'highlights_on_by_default_callback' ),
+			'hypothesis-setting-admin',
+			'setting_section_id2'
+		);
+
+		add_settings_field(
+			'sidebar-open-by-default',
+			'Sidebar open by default',
+			array( $this, 'sidebar_open_by_default_callback' ),
+			'hypothesis-setting-admin',
+			'setting_section_id2'
+		);
+
+		/**
+		 * Content Settings
+		 * Control which pages / posts Hypothesis is loaded on.
+		 */
+		add_settings_section(
+			'setting_section_id', // ID
+			'Content Settings', // Title
+			array( $this, 'print_section_info2' ), // Callback
 			'hypothesis-setting-admin' // Page
 		);
 		
@@ -160,6 +190,13 @@ class HypothesisSettingsPage
 	public function sanitize( $input )
 	{
 		$new_input = array();
+
+		if( isset( $input['highlights-on-by-default'] ) )
+			$new_input['highlights-on-by-default'] = absint($input['highlights-on-by-default']);
+
+		if( isset( $input['sidebar-open-by-default'] ) )
+			$new_input['sidebar-open-by-default'] = absint($input['sidebar-open-by-default']);
+
 		if( isset( $input['allow-on-blog-page'] ) )
 			$new_input['allow-on-blog-page'] = absint($input['allow-on-blog-page']);
 
@@ -188,15 +225,47 @@ class HypothesisSettingsPage
 	}
 
 	/**
-	 * Print the Section text
+	 * Print the Hypothesis Settings section text
 	 */
 	public function print_section_info()
 	{
-		print 'Customize which pages Hypothesis is loaded on below:';
+		print 'Customize Hypothesis defaults and behavior below:';
 	}
 
 	/**
-	 * Get the settings option array and print one of its values
+	 * Print the Content Settings section text
+	 */
+	public function print_section_info2()
+	{
+		print 'Control which pages Hypothesis is loaded on below:';
+	}
+
+	/**
+	 * HYPOTHESIS SETTINGS Callbacks
+	 * These get the settings option array for a setting and print one of its values.
+	 * They are used to set various defaults for the Hypothesis application.
+	 */
+	public function highlights_on_by_default_callback()
+	{
+		printf(
+			'<input type="checkbox" id="highlights-on-by-default" name="wp_hypothesis_options[highlights-on-by-default]" value="1" '.checked( isset($this->options["highlights-on-by-default"]) ? $this->options["highlights-on-by-default"]: null, 1, false ).'/>',
+			isset( $this->options['highlights-on-by-default'] ) ? esc_attr( $this->options['highlights-on-by-default']) : 0
+		);
+	}
+
+	public function sidebar_open_by_default_callback()
+	{
+		printf(
+			'<input type="checkbox" id="sidebar-open-by-default" name="wp_hypothesis_options[sidebar-open-by-default]" value="1" '.checked( isset($this->options["sidebar-open-by-default"]) ? $this->options["sidebar-open-by-default"]: null, 1, false ).'/>',
+			isset( $this->options['sidebar-open-by-default'] ) ? esc_attr( $this->options['sidebar-open-by-default']) : 0
+		);
+	}
+
+
+	/**
+	 * CONTENT SETTINGS Callbacks
+	 * These get the settings option array for a setting and print one of its values.
+	 * They are used to determine what pages Hypothesis is loaded on.
 	 */
 	public function allow_on_blog_page_callback()
 	{
@@ -206,9 +275,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function allow_on_front_page_callback()
 	{
 		printf(
@@ -218,9 +284,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function allow_on_posts_callback()
 	{
 		printf(
@@ -230,9 +293,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function allow_on_pages_callback()
 	{
 		printf(
@@ -242,9 +302,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function page_ids_show_h_callback()
 	{
 		printf(
@@ -253,9 +310,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function post_ids_show_h_callback()
 	{
 		printf(
@@ -264,10 +318,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function post_ids_override_callback()
 	{
 		printf(
@@ -276,9 +326,6 @@ class HypothesisSettingsPage
 		);
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function page_ids_override_callback()
 	{
 		printf(
@@ -293,13 +340,23 @@ if( is_admin() )
 
 
 /**
- * Add Hypothesis over https based on conditions set in the plugin settings.
+ * Add Hypothesis based on conditions set in the plugin settings.
  */
 add_action('wp', 'add_hypothesis');
 
 function add_hypothesis($param) {
 	$options = get_option( 'wp_hypothesis_options' );
 
+	// Embed options
+	if (isset($options['highlights-on-by-default'])):
+		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/wp-hypothesis/js/showhighlights.js', '', false, true );
+	endif;
+
+	if (isset($options['sidebar-open-by-default'])):
+		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/wp-hypothesis/js/sidebaropen.js', '', false, true );
+	endif;
+
+	// Content settings
 	if (isset($options['allow-on-blog-page']) && is_home()):
 		wp_enqueue_script( 'hypothesis', '//hypothes.is/embed.js', '', false, true );
 

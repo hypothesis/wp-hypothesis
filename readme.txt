@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: timmmmyboy, BigBlueHat
+Contributors: timmmmyboy, BigBlueHat, JakeHartnell
 Tags: hypothesis, annotation, comments
 Requires at least: 3.0.1
-Tested up to: 3.6
-Stable tag: 0.3.0
+Tested up to: 4.3
+Stable tag: 0.4.0
 License: BSD
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -20,6 +20,12 @@ Hypothesis is a web annotation tool that allows users to provide commentary, ref
 3. You're done! The frontend of your site should now be enabled to use Hypothesis.
 
 == Changelog ==
+
+= 0.4.0 =
+ - Add customized embedding options
+     + Show highlights by default
+     + Sidebar open by default.
+     + Disable click to close.
 
 = 0.3.0 =
  - Add option to allow on select pages or posts
