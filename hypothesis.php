@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hypothesis
- * @version 0.4.0
+ * @version 0.4.1
  */
 /*
 Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.4.0
+Version: 0.4.1
 Author URI: http://hypothes.is/
 */
 
@@ -349,11 +349,11 @@ function add_hypothesis($param) {
 
 	// Embed options
 	if (isset($options['highlights-on-by-default'])):
-		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/wp-hypothesis/js/showhighlights.js', '', false, true );
+		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
 	endif;
 
 	if (isset($options['sidebar-open-by-default'])):
-		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/wp-hypothesis/js/sidebaropen.js', '', false, true );
+		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
 	endif;
 
 	// Content settings

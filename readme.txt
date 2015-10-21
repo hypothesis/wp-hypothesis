@@ -3,7 +3,7 @@ Contributors: timmmmyboy, BigBlueHat, JakeHartnell
 Tags: hypothesis, annotation, comments
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: BSD
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
