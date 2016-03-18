@@ -5,9 +5,11 @@ Stable versions are available on the
 
 ## Install Directions
 
-1. Upload `hypothesis.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. You're done! The frontend of your site should now be enabled to use Hypothesis.
+1. Visit your WordPress plugins page (/wp-admin/plugins.php)
+2. Click the Add New button
+3. Search the WordPress plugins directory for Hypothes.is
+4. Click Install Now.
+5. Click Activate
 
 ## Publishing
 
