@@ -95,6 +95,14 @@ class HypothesisSettingsPage
 			'setting_section_id2'
 		);
 
+		add_settings_field(
+			'serve-pdfs-with-via',
+			'Enable annotation for PDFs in Media Library',
+			array( $this, 'serve_pdfs_with_via_default_callback' ),
+			'hypothesis-setting-admin',
+			'setting_section_id2'
+		);
+
 		/**
 		 * Content Settings
 		 * Control which pages / posts Hypothesis is loaded on.
@@ -187,6 +195,9 @@ class HypothesisSettingsPage
 		if( isset( $input['sidebar-open-by-default'] ) )
 			$new_input['sidebar-open-by-default'] = absint($input['sidebar-open-by-default']);
 
+		if( isset( $input['serve-pdfs-with-via'] ) )
+			$new_input['serve-pdfs-with-via'] = absint($input['serve-pdfs-with-via']);
+
 		if( isset( $input['allow-on-blog-page'] ) )
 			$new_input['allow-on-blog-page'] = absint($input['allow-on-blog-page']);
 
@@ -235,6 +246,7 @@ class HypothesisSettingsPage
 	 * These get the settings option array for a setting and print one of its values.
 	 * They are used to set various defaults for the Hypothesis application.
 	 */
+
 	public function highlights_on_by_default_callback()
 	{
 		printf(
@@ -251,6 +263,13 @@ class HypothesisSettingsPage
 		);
 	}
 
+	public function serve_pdfs_with_via_default_callback()
+	{
+		printf(
+			'<input type="checkbox" id="serve-pdfs-with-via" name="wp_hypothesis_options[serve-pdfs-with-via]" value="1" '.checked( isset($this->options["serve-pdfs-with-via"]) ? $this->options["serve-pdfs-with-via"]: null, 1, false ).'/>',
+			isset( $this->options['serve-pdfs-with-via'] ) ? esc_attr( $this->options['serve-pdfs-with-via']) : 0
+		);
+	}
 
 	/**
 	 * CONTENT SETTINGS Callbacks
@@ -357,6 +376,11 @@ function add_hypothesis($param) {
 	if (isset($options['sidebar-open-by-default'])):
 		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
 	endif;
+
+	if (isset($options['serve-pdfs-with-via'])):
+		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/hypothesis/js/via-pdf.js', '', false, true );
+	endif;
+
 
 	// Content settings
 	if (isset($options['allow-on-blog-page']) && is_home()):
