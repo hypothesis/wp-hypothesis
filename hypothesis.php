@@ -345,6 +345,10 @@ function add_hypothesis($param) {
 		add_option( 'wp_hypothesis_options', $defaults );
 	endif;
 
+	// otherwise highlighting is on by default
+	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/hypothesis/js/nohighlights.js', '', false, true );
+
+
 	// Embed options
 	if (isset($options['highlights-on-by-default'])):
 		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
