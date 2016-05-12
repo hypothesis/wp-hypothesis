@@ -55,18 +55,7 @@ class HypothesisSettingsPage
 	{
 		// Set class property
 		$this->options = get_option( 'wp_hypothesis_options' );
-		?>
-		<div class="wrap">
-			<form method="post" action="options.php">
-				<?php
-					// This prints out all hidden setting fields
-					settings_fields( 'my_option_group' );
-					do_settings_sections( 'hypothesis-setting-admin' );
-					submit_button();
-				?>
-			</form>
-		</div>
-		<?php
+		include ( 'formgen.php' );
 	}
 
 	/**
