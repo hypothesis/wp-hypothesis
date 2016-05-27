@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Hypothesis
- * @version 0.4.7
+ * @version 0.4.5
  */
 /*
 Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.4.7
+Version: 0.4.5
 Author URI: http://hypothes.is/
 */
 
@@ -365,20 +365,20 @@ function add_hypothesis($param) {
 	endif;
 
 	// otherwise highlighting is on by default
-	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/wp-hypothesis/js/nohighlights.js', '', false, true );
+	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/hypothesis/js/nohighlights.js', '', false, true );
 
 
 	// Embed options
 	if (isset($options['highlights-on-by-default'])):
-		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/wp-hypothesis/js/showhighlights.js', '', false, true );
+		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
 	endif;
 
 	if (isset($options['sidebar-open-by-default'])):
-		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/wp-hypothesis/js/sidebaropen.js', '', false, true );
+		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
 	endif;
 
 	if (isset($options['serve-pdfs-with-via'])):
-		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/wp-hypothesis/js/via-pdf.js', '', false, true );
+		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/hypothesis/js/via-pdf.js', '', false, true );
 	endif;
 
 
