@@ -365,20 +365,20 @@ function add_hypothesis($param) {
 	endif;
 
 	// otherwise highlighting is on by default
-	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/hypothesis/js/nohighlights.js', '', false, true );
+	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/wp-hypothesis/js/nohighlights.js', '', false, true );
 
 
 	// Embed options
 	if (isset($options['highlights-on-by-default'])):
-		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
+		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/wp-hypothesis/js/showhighlights.js', '', false, true );
 	endif;
 
 	if (isset($options['sidebar-open-by-default'])):
-		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
+		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/wp-hypothesis/js/sidebaropen.js', '', false, true );
 	endif;
 
 	if (isset($options['serve-pdfs-with-via'])):
-		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/hypothesis/js/via-pdf.js', '', false, true );
+		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/wp-hypothesis/js/via-pdf.js', '', false, true );
 	endif;
 
 
