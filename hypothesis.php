@@ -8,7 +8,7 @@ Plugin Name: Hypothesis
 Plugin URI: http://hypothes.is/
 Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
 Author: The Hypothesis Project and contributors
-Version: 0.4.5
+Version: 0.4.7
 Author URI: http://hypothes.is/
 */
 
@@ -55,18 +55,7 @@ class HypothesisSettingsPage
 	{
 		// Set class property
 		$this->options = get_option( 'wp_hypothesis_options' );
-		?>
-		<div class="wrap">
-			<form method="post" action="options.php">
-				<?php
-					// This prints out all hidden setting fields
-					settings_fields( 'my_option_group' );
-					do_settings_sections( 'hypothesis-setting-admin' );
-					submit_button();
-				?>
-			</form>
-		</div>
-		<?php
+		include ( 'formgen.php' );
 	}
 
 	/**
@@ -102,6 +91,14 @@ class HypothesisSettingsPage
 			'sidebar-open-by-default',
 			'Sidebar open by default',
 			array( $this, 'sidebar_open_by_default_callback' ),
+			'hypothesis-setting-admin',
+			'setting_section_id2'
+		);
+
+		add_settings_field(
+			'serve-pdfs-with-via',
+			'Enable annotation for PDFs in Media Library',
+			array( $this, 'serve_pdfs_with_via_default_callback' ),
 			'hypothesis-setting-admin',
 			'setting_section_id2'
 		);
@@ -198,6 +195,9 @@ class HypothesisSettingsPage
 		if( isset( $input['sidebar-open-by-default'] ) )
 			$new_input['sidebar-open-by-default'] = absint($input['sidebar-open-by-default']);
 
+		if( isset( $input['serve-pdfs-with-via'] ) )
+			$new_input['serve-pdfs-with-via'] = absint($input['serve-pdfs-with-via']);
+
 		if( isset( $input['allow-on-blog-page'] ) )
 			$new_input['allow-on-blog-page'] = absint($input['allow-on-blog-page']);
 
@@ -246,6 +246,7 @@ class HypothesisSettingsPage
 	 * These get the settings option array for a setting and print one of its values.
 	 * They are used to set various defaults for the Hypothesis application.
 	 */
+
 	public function highlights_on_by_default_callback()
 	{
 		printf(
@@ -262,6 +263,13 @@ class HypothesisSettingsPage
 		);
 	}
 
+	public function serve_pdfs_with_via_default_callback()
+	{
+		printf(
+			'<input type="checkbox" id="serve-pdfs-with-via" name="wp_hypothesis_options[serve-pdfs-with-via]" value="1" '.checked( isset($this->options["serve-pdfs-with-via"]) ? $this->options["serve-pdfs-with-via"]: null, 1, false ).'/>',
+			isset( $this->options['serve-pdfs-with-via'] ) ? esc_attr( $this->options['serve-pdfs-with-via']) : 0
+		);
+	}
 
 	/**
 	 * CONTENT SETTINGS Callbacks
@@ -356,6 +364,10 @@ function add_hypothesis($param) {
 		add_option( 'wp_hypothesis_options', $defaults );
 	endif;
 
+	// otherwise highlighting is on by default
+	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/hypothesis/js/nohighlights.js', '', false, true );
+
+
 	// Embed options
 	if (isset($options['highlights-on-by-default'])):
 		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
@@ -364,6 +376,11 @@ function add_hypothesis($param) {
 	if (isset($options['sidebar-open-by-default'])):
 		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
 	endif;
+
+	if (isset($options['serve-pdfs-with-via'])):
+		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/hypothesis/js/via-pdf.js', '', false, true );
+	endif;
+
 
 	// Content settings
 	if (isset($options['allow-on-blog-page']) && is_home()):
