@@ -1,0 +1,22 @@
+{
+    "name": "hypothesis/hypothesis",
+    "description": "An open platform for the collaborative evaluation of knowledge.",
+    "homepage": "https://github.com/hypothesis/wp-hypothesis",
+    "support": {
+      "issues": "https://github.com/hypothesis/wp-hypothesis/issues",
+      "source": "https://github.com/hypothesis/wp-hypothesis/"
+    },
+    "type": "wordpress-plugin",
+    "license": "BSD-2-Clause",
+    "require": {},
+    "require-dev": {
+      "squizlabs/php_codesniffer": "^2.7",
+      "wp-coding-standards/wpcs": "^0.10"
+    },
+    "scripts": {
+      "test": [
+        "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+        "vendor/bin/phpcs --standard=phpcs.xml --extensions=php ."
+      ]
+    }
+}

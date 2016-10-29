@@ -282,9 +282,11 @@ class HypothesisSettingsPage {
 	 * Callback for 'highlights-on-by-default'.
 	 */
 	public function highlights_on_by_default_callback() {
+		$val = isset( $this->options['highlights-on-by-default'] ) ? esc_attr( $this->options['highlights-on-by-default'] ) : 0;
+
 		printf(
-			'<input type="checkbox" id="highlights-on-by-default" name="wp_hypothesis_options[highlights-on-by-default]" value="1" ' . checked( isset( $this->options['highlights-on-by-default'] ) ? $this->options['highlights-on-by-default'] : null, 1, false ) . '/>',
-			isset( $this->options['highlights-on-by-default'] ) ? esc_attr( $this->options['highlights-on-by-default'] ) : 0
+			'<input type="checkbox" id="highlights-on-by-default" name="wp_hypothesis_options[highlights-on-by-default]" value="1" %s/>',
+			checked( $val, 1, false )
 		);
 	}
 
@@ -292,9 +294,10 @@ class HypothesisSettingsPage {
 	 * Callback for 'sidebar-open-by-default'.
 	 */
 	public function sidebar_open_by_default_callback() {
+		$val = isset( $this->options['sidebar-open-by-default'] ) ? esc_attr( $this->options['sidebar-open-by-default'] ) : 0;
 		printf(
-			'<input type="checkbox" id="sidebar-open-by-default" name="wp_hypothesis_options[sidebar-open-by-default]" value="1" ' . checked( isset( $this->options['sidebar-open-by-default'] ) ? $this->options['sidebar-open-by-default'] : null, 1, false ) . '/>',
-			isset( $this->options['sidebar-open-by-default'] ) ? esc_attr( $this->options['sidebar-open-by-default']) : 0
+			'<input type="checkbox" id="sidebar-open-by-default" name="wp_hypothesis_options[sidebar-open-by-default]" value="1" %s/>',
+			checked( $val, 1, false )
 		);
 	}
 
@@ -302,9 +305,10 @@ class HypothesisSettingsPage {
 	 * Callback for 'serve-pdfs-with-via'.
 	 */
 	public function serve_pdfs_with_via_default_callback() {
+		$val = isset( $this->options['serve-pdfs-with-via'] ) ? esc_attr( $this->options['serve-pdfs-with-via'] ) : 0;
 		printf(
-			'<input type="checkbox" id="serve-pdfs-with-via" name="wp_hypothesis_options[serve-pdfs-with-via]" value="1" ' . checked( isset( $this->options['serve-pdfs-with-via'] ) ? $this->options['serve-pdfs-with-via'] : null, 1, false ) . '/>',
-			isset( $this->options['serve-pdfs-with-via'] ) ? esc_attr( $this->options['serve-pdfs-with-via']) : 0
+			'<input type="checkbox" id="serve-pdfs-with-via" name="wp_hypothesis_options[serve-pdfs-with-via]" value="1" %s/>',
+			checked( $val, 1, false )
 		);
 	}
 
@@ -312,9 +316,10 @@ class HypothesisSettingsPage {
 	 * Callback for 'allow_on_blog_page'.
 	 */
 	public function allow_on_blog_page_callback() {
+		$val = isset( $this->options['allow-on-blog-page'] ) ? esc_attr( $this->options['allow-on-blog-page'] ) : 0;
 		printf(
-			'<input type="checkbox" id="allow-on-blog-page" name="wp_hypothesis_options[allow-on-blog-page]" value="1" ' . checked( isset( $this->options['allow-on-blog-page'] ) ? $this->options['allow-on-blog-page'] : null, 1, false ) . '/>',
-			isset( $this->options['allow-on-blog-page'] ) ? esc_attr( $this->options['allow-on-blog-page'] ) : 0
+			'<input type="checkbox" id="allow-on-blog-page" name="wp_hypothesis_options[allow-on-blog-page]" value="1" %s/>',
+			checked( $val, 1, false )
 		);
 	}
 
@@ -322,9 +327,10 @@ class HypothesisSettingsPage {
 	 * Callback for 'allow-on-front-page'.
 	 */
 	public function allow_on_front_page_callback() {
+		$val = isset( $this->options['allow-on-front-page'] ) ? esc_attr( $this->options['allow-on-front-page'] ) : 0;
 		printf(
-			'<input type="checkbox" id="allow-on-front-page" name="wp_hypothesis_options[allow-on-front-page]" value="1"' . checked( isset( $this->options['allow-on-front-page'] ) ? $this->options['allow-on-front-page'] : null, 1, false ) . ' />',
-			isset( $this->options['allow-on-front-page'] ) ? esc_attr( $this->options['allow-on-front-page'] ) : 0
+			'<input type="checkbox" id="allow-on-front-page" name="wp_hypothesis_options[allow-on-front-page]" value="1" %s/>',
+			checked( $val, 1, false )
 		);
 	}
 
@@ -333,10 +339,13 @@ class HypothesisSettingsPage {
 	 */
 	public function allow_on_posttype_callback( $args ) {
 		$slug = $args[0];
+		$val = isset( $this->options[ "allow-on-$slug" ] ) ? esc_attr( $this->options[ "allow-on-$slug" ] ) : 0;
 
 		printf(
-			'<input type="checkbox" id="allow-on-' . $slug . '" name="wp_hypothesis_options[allow-on-' . $slug . ']" value="1"' . checked( isset( $this->options[ "allow-on-$slug" ] ) ? $this->options[ "allow-on-$slug" ] : null, 1, false ) . ' />',
-			isset( $this->options[ "allow-on-$slug" ] ) ? esc_attr( $this->options[ "allow-on-$slug" ]) : 0
+			'<input type="checkbox" id="allow-on-%s" name="wp_hypothesis_options[allow-on-%s]" value="1" %s/>',
+			esc_attr( $slug ),
+			esc_attr( $slug ),
+			checked( $val, 1, false )
 		);
 	}
 
@@ -346,9 +355,14 @@ class HypothesisSettingsPage {
 	 * @param array $args An arry containing the post type slug and the post type name (plural).
 	 */
 	public function posttype_ids_show_h_callback( $args ) {
+		$slug = $args[0];
+		$val = isset( $this->options[ $slug . '_ids_show_h' ] ) ? esc_attr( implode( ',', $this->options[ $slug . '_ids_show_h' ] ) ) : '';
+
 		printf(
-			'<input type="text" id="' . $args[0] . '_ids_show_h" name="wp_hypothesis_options[' . $args[0] . '_ids_show_h]" value="%s" />',
-			isset( $this->options[ $args[0] . '_ids_show_h' ] ) ? esc_attr( implode( ',', $this->options[ $args[0] . '_ids_show_h' ] ) ) : ''
+			'<input type="text" id="%s_ids_show_h" name="wp_hypothesis_options[%s_ids_show_h]" value="%s" />',
+			esc_attr( $slug ),
+			esc_attr( $slug ),
+			esc_attr( $val )
 		);
 	}
 
@@ -358,9 +372,14 @@ class HypothesisSettingsPage {
 	 * @param array $args An arry containing the post type slug and the post type name (plural).
 	 */
 	public function posttype_ids_override_callback( $args ) {
+		$slug = $args[0];
+		$val = isset( $this->options[ $slug . '_ids_override' ] ) ? esc_attr( implode( ',', $this->options[ $slug . '_ids_override' ] ) ) : '';
+
 		printf(
-			'<input type="text" id="' . $args[0] . '_ids_override" name="wp_hypothesis_options[' . $args[0] . '_ids_override]" value="%s" />',
-			isset( $this->options[ $args[0] . '_ids_override' ] ) ? esc_attr( implode( ',', $this->options[ $args[0] . '_ids_override' ] ) ) : ''
+			'<input type="text" id="%s_ids_override" name="wp_hypothesis_options[%s_ids_override]" value="%s" />',
+			esc_attr( $slug ),
+			esc_attr( $slug ),
+			esc_attr( $val )
 		);
 	}
 }
@@ -428,18 +447,18 @@ function add_hypothesis() {
 				$slug = 'posts'; // Backwards compatibility.
 			}
 			if ( isset( $options[ "allow-on-$slug" ] ) && is_singular( $posttype ) ) { // Check if Hypothesis is allowed on this post type.
-				if ( ! ( isset( $options[ $posttype . '_ids_override' ] ) && is_single( $options[ $posttype . '_ids_override' ] ) ) ) { // Make sure this post isn't in the override list if it exists.
+				if ( isset( $options[ $posttype . '_ids_override' ] ) && is_single( $options[ $posttype . '_ids_override' ] ) ) { // Make sure this post isn't in the override list if it exists.
 					enqueue_hypothesis();
 				}
 			} elseif ( ! isset( $options[ "allow-on-$slug" ] ) && isset( $options[ $posttype . '_ids_show_h' ] ) && is_single( $options[ $posttype . '_ids_show_h' ] ) ) { // Check if Hypothesis is allowed on this specific post.
 				enqueue_hypothesis();
 			}
 		} elseif ( 'page' === $slug ) {
-			if ( isset( $options['allow_on_pages'] ) && is_page() && ! is_front_page() && ! is_home() ) { // Check if Hypothesis is allowed on pages (and that we aren't on a special page).
-				if ( ! ( isset( $options['page_ids_override'] ) && is_page( $options['page_ids_override'] ) ) ) { // Make sure this page isn't in the override list if it exists.
+			if ( isset( $options['allow-on-pages'] ) && is_page() && ! is_front_page() && ! is_home() ) { // Check if Hypothesis is allowed on pages (and that we aren't on a special page).
+				if ( isset( $options['page_ids_override'] ) && ! is_page( $options['page_ids_override'] ) ) { // Make sure this page isn't in the override list if it exists.
 					enqueue_hypothesis();
 				}
-			} elseif ( ! isset( $options['allow-on-pages'] ) && isset( $options['page_ids_show_h'] ) && is_page( $options[ $slug . '_ids_show_h' ] ) ) { // Check if Hypothesis is allowed on this specific page.
+			} elseif ( ! isset( $options['allow-on-pages'] ) && isset( $options['page_ids_show_h'] ) && is_page( $options['page_ids_show_h'] ) ) { // Check if Hypothesis is allowed on this specific page.
 				enqueue_hypothesis();
 			}
 		}
