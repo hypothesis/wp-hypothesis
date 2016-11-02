@@ -4,13 +4,13 @@ if (typeof window.hypothesisConfig === 'function') {
   window.hypothesisConfig = function () {
     return {
       showHighlights: true,
-      firstRun: true
+      openSidebar: true
     }
   }
 } else {
   window.hypothesisConfig = function () {
     return {
-      firstRun: true
+      openSidebar: true
     }
   }
 }
