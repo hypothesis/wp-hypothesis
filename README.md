@@ -10,6 +10,7 @@ Stable versions are available on the
 3. Search the WordPress plugins directory for Hypothes.is
 4. Click Install Now.
 5. Click Activate
+6. Visit your WordPress Settings > Hypothesis page to configure how it works on your site
 
 ## Publishing
 
