@@ -1,17 +1,16 @@
 <?php
-/**
- * @package Hypothesis
- * @version 0.4.8
- */
-
 /*
-Plugin Name: Hypothesis
-Plugin URI: http://hypothes.is/
-Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
-Author: The Hypothesis Project and contributors
-Version: 0.4.8
-Author URI: http://hypothes.is/
-*/
+ * Plugin Name: Hypothesis
+ * Plugin URI: http://hypothes.is/
+ * Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
+ * Author: The Hypothesis Project and contributors
+ * Version: 0.4.8
+ * Author URI: http://hypothes.is/
+ * Text Domain:     hypothesis
+ * Domain Path:     /languages
+ *
+ * @package         Hypothesis
+ */
 
 // Exit if called directly.
 defined( 'ABSPATH' ) or die( 'Cannot access pages directly.' );
@@ -47,8 +46,8 @@ class HypothesisSettingsPage {
 	 */
 	public function add_plugin_page() {
 		add_options_page(
-			'Hypothesis Settings',
-			'Hypothesis',
+			__( 'Hypothesis Settings', 'hypothesis' ),
+			__( 'Hypothesis', 'hypothesis' ),
 			'manage_options',
 			'hypothesis-setting-admin',
 			array( $this, 'create_admin_page' )
@@ -62,8 +61,8 @@ class HypothesisSettingsPage {
 	 */
 	public static function get_posttypes() {
 		return apply_filters('hypothesis_supported_posttypes', array(
-			'post' => 'posts',
-			'page' => 'pages',
+			'post' => _x( 'posts', 'plural post type', 'hypothesis' ),
+			'page' => _x( 'pages', 'plural post type', 'hypothesis' ),
 		) );
 	}
 
@@ -101,14 +100,14 @@ class HypothesisSettingsPage {
 		 */
 		add_settings_section(
 			'hypothesis_settings_section', // ID.
-			'Hypothesis Settings', // Title.
+			__( 'Hypothesis Settings', 'hypothesis' ), // Title.
 			array( $this, 'settings_section_info' ), // Callback.
 			'hypothesis-setting-admin' // Page.
 		);
 
 		add_settings_field(
 			'highlights-on-by-default',
-			'Highlights on by default',
+			__( 'Highlights on by default', 'hypothesis' ),
 			array( $this, 'highlights_on_by_default_callback' ),
 			'hypothesis-setting-admin',
 			'hypothesis_settings_section'
@@ -116,7 +115,7 @@ class HypothesisSettingsPage {
 
 		add_settings_field(
 			'sidebar-open-by-default',
-			'Sidebar open by default',
+			__( 'Sidebar open by default', 'hypothesis' ),
 			array( $this, 'sidebar_open_by_default_callback' ),
 			'hypothesis-setting-admin',
 			'hypothesis_settings_section'
@@ -124,7 +123,7 @@ class HypothesisSettingsPage {
 
 		add_settings_field(
 			'serve-pdfs-with-via',
-			'Enable annotation for PDFs in Media Library',
+			__( 'Enable annotation for PDFs in Media Library', 'hypothesis' ),
 			array( $this, 'serve_pdfs_with_via_default_callback' ),
 			'hypothesis-setting-admin',
 			'hypothesis_settings_section'
@@ -136,14 +135,14 @@ class HypothesisSettingsPage {
 		 */
 		add_settings_section(
 			'hypothesis_content_section', // ID.
-			'Content Settings', // Title.
+			__( 'Content Settings', 'hypothesis' ), // Title.
 			array( $this, 'content_section_info' ), // Callback.
 			'hypothesis-setting-admin' // Page.
 		);
 
 		add_settings_field(
 			'allow-on-front-page',
-			'Allow on front page',
+			__( 'Allow on front page', 'hypothesis' ),
 			array( $this, 'allow_on_front_page_callback' ),
 			'hypothesis-setting-admin',
 			'hypothesis_content_section'
@@ -151,7 +150,7 @@ class HypothesisSettingsPage {
 
 		add_settings_field(
 			'allow-on-blog-page',
-			'Allow on blog page',
+			__( 'Allow on blog page', 'hypothesis' ),
 			array( $this, 'allow_on_blog_page_callback' ),
 			'hypothesis-setting-admin',
 			'hypothesis_content_section'
@@ -166,7 +165,7 @@ class HypothesisSettingsPage {
 
 			add_settings_field(
 				"allow-on-$slug",
-				"Allow on $name",
+				sprintf( __( 'Allow on %s', 'hypothesis' ), $name ),
 				array( $this, 'allow_on_posttype_callback' ),
 				'hypothesis-setting-admin',
 				'hypothesis_content_section',
@@ -180,7 +179,11 @@ class HypothesisSettingsPage {
 		foreach ( $posttypes as $slug => $name ) {
 			add_settings_field(
 				$slug . '_ids_show_h', // ID.
-				"Allow on specific $name (list of comma-separated $slug IDs, no spaces)", // Title.
+				sprintf(
+					__( 'Allow on specific %1$s (list of comma-separated %1$s IDs, no spaces)', 'hypothesis' ),
+					$name,
+					$slug
+				), // Title.
 				array( $this, 'posttype_ids_show_h_callback' ), // Callback.
 				'hypothesis-setting-admin', // Page.
 				'hypothesis_content_section', // Section.
@@ -194,7 +197,11 @@ class HypothesisSettingsPage {
 		foreach ( $posttypes as $slug => $name ) {
 			add_settings_field(
 				$slug . '_ids_override', // ID.
-				"Disallow on specific $name (list of comma-separated $slug IDs, no spaces)", // Title.
+				sprintf(
+					__( 'Disallow on specific %1$s (list of comma-separated %1$s IDs, no spaces)', 'hypothesis' ),
+					$name,
+					$slug
+				), // Title.
 				array( $this, 'posttype_ids_override_callback' ), // Callback.
 				'hypothesis-setting-admin', // Page.
 				'hypothesis_content_section', // Section.
@@ -252,11 +259,11 @@ class HypothesisSettingsPage {
 				$slug = 'page';
 			}
 
-			if ( isset( $input[ $slug . '_ids_show_h' ] ) ) {
+			if ( isset( $input[ $slug . '_ids_show_h' ] ) && '' != $input[ $slug . '_ids_show_h' ] ) {
 				$new_input[ $slug . '_ids_show_h' ] = explode( ',', esc_attr( $input[ $slug . '_ids_show_h' ] ) );
 			}
 
-			if ( isset( $input[ $slug . '_ids_override' ] ) ) {
+			if ( isset( $input[ $slug . '_ids_override' ] ) && '' != $input[ $slug . '_ids_override' ] ) {
 				$new_input[ $slug . '_ids_override' ] = explode( ',', esc_attr( $input[ $slug . '_ids_override' ] ) );
 			}
 		}
@@ -268,15 +275,17 @@ class HypothesisSettingsPage {
 	 * Print the Hypothesis Settings section text
 	 */
 	public function settings_section_info() {
-		print 'Customize Hypothesis defaults and behavior.';
-	}
+	?>
+		<p><?php esc_attr_e( 'Customize Hypothesis defaults and behavior.', 'hypothesis' ); ?></p>
+	<?php }
 
 	/**
 	 * Print the Content Settings section text
 	 */
 	public function content_section_info() {
-		print 'Control where Hypothesis is loaded.';
-	}
+	?>
+		<p><?php esc_attr_e( 'Control where Hypothesis is loaded.', 'hypothesis' ); ?></p>
+	<?php }
 
 	/**
 	 * Callback for 'highlights-on-by-default'.
