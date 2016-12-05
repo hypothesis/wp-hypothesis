@@ -1,0 +1,102 @@
+# Copyright (C) 2016 The Hypothesis Project and contributors
+# This file is distributed under the same license as the Hypothesis package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Hypothesis 0.4.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hypothesis\n"
+"POT-Creation-Date: 2016-12-05 14:07:56+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: hypothesis.php:49 hypothesis.php:103
+msgid "Hypothesis Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Hypothesis"
+msgstr ""
+
+#: hypothesis.php:110
+msgid "Highlights on by default"
+msgstr ""
+
+#: hypothesis.php:118
+msgid "Sidebar open by default"
+msgstr ""
+
+#: hypothesis.php:126
+msgid "Enable annotation for PDFs in Media Library"
+msgstr ""
+
+#: hypothesis.php:138
+msgid "Content Settings"
+msgstr ""
+
+#: hypothesis.php:145
+msgid "Allow on front page"
+msgstr ""
+
+#: hypothesis.php:153
+msgid "Allow on blog page"
+msgstr ""
+
+#: hypothesis.php:168
+msgid "Allow on %s"
+msgstr ""
+
+#: hypothesis.php:183
+msgid "Allow on specific %1$s (list of comma-separated %1$s IDs, no spaces)"
+msgstr ""
+
+#: hypothesis.php:201
+msgid "Disallow on specific %1$s (list of comma-separated %1$s IDs, no spaces)"
+msgstr ""
+
+#: hypothesis.php:279
+msgid "Customize Hypothesis defaults and behavior."
+msgstr ""
+
+#: hypothesis.php:287
+msgid "Control where Hypothesis is loaded."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://hypothes.is/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Hypothesis is an open platform for the collaborative evaluation of "
+"knowledge. This plugin embeds the necessary scripts in your Wordpress site "
+"to enable any user to use Hypothesis without installing any extensions."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "The Hypothesis Project and contributors"
+msgstr ""
+
+#: hypothesis.php:64
+msgctxt "plural post type"
+msgid "posts"
+msgstr ""
+
+#: hypothesis.php:65
+msgctxt "plural post type"
+msgid "pages"
+msgstr ""
