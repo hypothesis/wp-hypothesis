@@ -397,7 +397,7 @@ add_action( 'wp', 'add_hypothesis' );
  * Wrapper for the primary Hypothesis wp_enqueue call.
  */
 function enqueue_hypothesis() {
-	wp_enqueue_script( 'hypothesis', 'https://hypothes.is/embed.js', array(), false, true );
+	wp_enqueue_script( 'hypothesis', 'https://hypothes.is/embed.js', [], false, true );
 }
 
 /**
@@ -416,19 +416,19 @@ function add_hypothesis() {
 	endif;
 
 	// Otherwise highlighting is on by default.
-	wp_enqueue_script( 'nohighlights', '/wp-content/plugins/hypothesis/js/nohighlights.js', '', false, true );
+	wp_enqueue_script( 'nohighlights', plugins_url( 'js/nohighlights.js', __FILE__ ), [], false, true );
 
 		// Embed options.
 	if ( isset( $options['highlights-on-by-default'] ) ) :
-		wp_enqueue_script( 'showhighlights', '/wp-content/plugins/hypothesis/js/showhighlights.js', '', false, true );
+		wp_enqueue_script( 'showhighlights', plugins_url( 'js/showhighlights.js', __FILE__ ), [], false, true );
 	endif;
 
 	if ( isset( $options['sidebar-open-by-default'] ) ) :
-		wp_enqueue_script( 'sidebaropen', '/wp-content/plugins/hypothesis/js/sidebaropen.js', '', false, true );
+		wp_enqueue_script( 'sidebaropen', plugins_url( 'js/sidebaropen.js', __FILE__ ), [], false, true );
 	endif;
 
 	if ( isset( $options['serve-pdfs-with-via'] ) ) :
-		wp_enqueue_script( 'pdfs-with-via', '/wp-content/plugins/hypothesis/js/via-pdf.js', '', false, true );
+		wp_enqueue_script( 'pdfs-with-via', plugins_url( 'js/via-pdf.js', __FILE__ ), [], false, true );
 	endif;
 
 	// Content settings.
@@ -449,6 +449,8 @@ function add_hypothesis() {
 			if ( isset( $options[ "allow-on-$slug" ] ) && is_singular( $posttype ) ) { // Check if Hypothesis is allowed on this post type.
 				if ( isset( $options[ $posttype . '_ids_override' ] ) && ! is_single( $options[ $posttype . '_ids_override' ] ) ) { // Make sure this post isn't in the override list if it exists.
 					enqueue_hypothesis();
+				} elseif ( ! isset( $options[ $posttype . '_ids_override' ] ) ) {
+					enqueue_hypothesis();
 				}
 			} elseif ( ! isset( $options[ "allow-on-$slug" ] ) && isset( $options[ $posttype . '_ids_show_h' ] ) && is_single( $options[ $posttype . '_ids_show_h' ] ) ) { // Check if Hypothesis is allowed on this specific post.
 				enqueue_hypothesis();
@@ -456,6 +458,8 @@ function add_hypothesis() {
 		} elseif ( 'page' === $slug ) {
 			if ( isset( $options['allow-on-pages'] ) && is_page() && ! is_front_page() && ! is_home() ) { // Check if Hypothesis is allowed on pages (and that we aren't on a special page).
 				if ( isset( $options['page_ids_override'] ) && ! is_page( $options['page_ids_override'] ) ) { // Make sure this page isn't in the override list if it exists.
+					enqueue_hypothesis();
+				} elseif ( ! isset( $options['page_ids_override'] ) ) {
 					enqueue_hypothesis();
 				}
 			} elseif ( ! isset( $options['allow-on-pages'] ) && isset( $options['page_ids_show_h'] ) && is_page( $options['page_ids_show_h'] ) ) { // Check if Hypothesis is allowed on this specific page.
