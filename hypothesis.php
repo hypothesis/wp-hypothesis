@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) or die( 'Cannot access pages directly.' );
 
 // Load textdomain
 function hypothesis_load_plugin_textdomain() {
-    load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'hypothesis', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'hypothesis_load_plugin_textdomain' );
 
