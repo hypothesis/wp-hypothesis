@@ -406,7 +406,7 @@ add_action( 'wp', 'add_hypothesis' );
  * Wrapper for the primary Hypothesis wp_enqueue call.
  */
 function enqueue_hypothesis() {
-	wp_enqueue_script( 'hypothesis', 'https://hypothes.is/embed.js', [], false, true );
+	wp_enqueue_script( 'hypothesis', 'https://hypothes.is/embed.js', array(), false, true );
 }
 
 /**
@@ -425,19 +425,19 @@ function add_hypothesis() {
 	endif;
 
 	// Otherwise highlighting is on by default.
-	wp_enqueue_script( 'nohighlights', plugins_url( 'js/nohighlights.js', __FILE__ ), [], false, true );
+	wp_enqueue_script( 'nohighlights', plugins_url( 'js/nohighlights.js', __FILE__ ), array(), false, true );
 
 		// Embed options.
 	if ( isset( $options['highlights-on-by-default'] ) ) :
-		wp_enqueue_script( 'showhighlights', plugins_url( 'js/showhighlights.js', __FILE__ ), [], false, true );
+		wp_enqueue_script( 'showhighlights', plugins_url( 'js/showhighlights.js', __FILE__ ), array(), false, true );
 	endif;
 
 	if ( isset( $options['sidebar-open-by-default'] ) ) :
-		wp_enqueue_script( 'sidebaropen', plugins_url( 'js/sidebaropen.js', __FILE__ ), [], false, true );
+		wp_enqueue_script( 'sidebaropen', plugins_url( 'js/sidebaropen.js', __FILE__ ), array(), false, true );
 	endif;
 
 	if ( isset( $options['serve-pdfs-with-via'] ) ) :
-		wp_enqueue_script( 'pdfs-with-via', plugins_url( 'js/via-pdf.js', __FILE__ ), [], false, true );
+		wp_enqueue_script( 'pdfs-with-via', plugins_url( 'js/via-pdf.js', __FILE__ ), array(), false, true );
 	endif;
 
 	// Content settings.
