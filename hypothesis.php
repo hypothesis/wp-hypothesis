@@ -15,6 +15,12 @@
 // Exit if called directly.
 defined( 'ABSPATH' ) or die( 'Cannot access pages directly.' );
 
+// Load textdomain
+function hypothesis_load_plugin_textdomain() {
+    load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'hypothesis_load_plugin_textdomain' );
+
 /**
  * Create settings page (see https://codex.wordpress.org/Creating_Options_Pages)
  */
