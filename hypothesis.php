@@ -442,6 +442,11 @@ function add_hypothesis() {
 
 	if ( isset( $options['serve-pdfs-with-via'] ) ) :
 		wp_enqueue_script( 'pdfs-with-via', plugins_url( 'js/via-pdf.js', __FILE__ ), array(), false, true );
+
+		$uploads = wp_upload_dir();
+		wp_localize_script( 'pdfs-with-via', 'HypothesisPDF', array(
+			'uploadsBase' => trailingslashit( $uploads['baseurl'] ),
+		) );
 	endif;
 
 	// Content settings.

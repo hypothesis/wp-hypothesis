@@ -1,7 +1,7 @@
 var anchors = document.getElementsByTagName('a');
-var re = /wp-content\/uploads[.+]\.pdf/;
+var hypRe = new RegExp( HypothesisPDF.uploadsBase + '.+\.pdf', 'i' );
 for ( i=0; i<anchors.length; i++ ) {
    var href = anchors[i].href;
-   if ( href.match(/wp-content\/uploads.+\.pdf/i) ) 
+   if ( href.match(hypRe) )
        anchors[i].href = 'https://via.hypothes.is/' + anchors[i].href;
   }
