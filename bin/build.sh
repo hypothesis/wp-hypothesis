@@ -11,4 +11,4 @@ cd "$PROJECT_ROOT"
 
 wp i18n make-pot . "languages/hypothesis.pot"
 
-wp dist-archive . "$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION.zip"
+wp dist-archive . "$ZIP_FILE"
