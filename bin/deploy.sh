@@ -37,8 +37,8 @@ TAG=$(svn ls "https://plugins.svn.wordpress.org/$PLUGIN/tags/$VERSION")
 error=$?
 if [ $error == 0 ]; then
     # Tag exists, don't deploy
-    echo "Tag already exists for version $VERSION, aborting deployment"
-    exit 1
+    echo "Tag already exists for version $VERSION, skipping deployment"
+    exit 0
 fi
     
 cd "$PLUGIN_BUILDS_PATH"
