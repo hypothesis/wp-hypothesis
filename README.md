@@ -14,7 +14,7 @@ Stable versions are available on the
 
 ## Publishing
 
-New releases are automatically published to WordPress.org via Travis CI (using [this script](bin/deploy.sh)) whenever the version in [hypothesis.php](hypothesis.php) is incremented. Translation files will be updated as well. This method is largely based on the process described by [Iain Poulson](https://github.com/polevaultweb) in [this blog post](https://deliciousbrains.com/deploying-wordpress-plugins-travis/), and also makes use of the [wp-cli](https://wp-cli.org) `i18n` command.
+New releases are automatically published to WordPress.org via Travis CI (using [this script](bin/deploy.sh)) whenever the version in [hypothesis.php](hypothesis.php) is incremented and a new version is tagged. Translation files will be updated as well. This method is largely based on the process described by [Iain Poulson](https://github.com/polevaultweb) in [this blog post](https://deliciousbrains.com/deploying-wordpress-plugins-travis/), and also makes use of the [wp-cli](https://wp-cli.org) `i18n` command.
 
 ## License
 
