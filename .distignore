@@ -7,5 +7,6 @@ bin
 builds
 composer.json
 composer.lock
+node_modules
 package.json
 phpcs.xml
