@@ -1,3 +1,4 @@
-hypothesis
+.DS_Store
+builds
 node_modules
 vendor

@@ -1,0 +1,30 @@
+language: php
+php:
+- '7.2'
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+branches:
+  only:
+  - master
+  - "/\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+install:
+- composer install
+script:
+- composer test
+before_deploy:
+- export TRAVIS_PROJECT_SLUG="$(basename $TRAVIS_BUILD_DIR)"
+- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+- chmod +x wp-cli.phar
+- sudo mv wp-cli.phar /usr/local/bin/wp
+- wp package install wp-cli/dist-archive-command
+- ./bin/build.sh
+- cd $TRAVIS_BUILD_DIR
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./bin/deploy.sh
+  on:
+    branch: master
+    php: 7.2
