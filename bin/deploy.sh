@@ -92,7 +92,7 @@ svn stat svn | grep '^!' | awk '{print $2}' | xargs -I x svn rm --force x@
 svn stat svn
 
 # Commit to SVN
-svn commit -m "Deploy version $VERSION from GitHub" --no-auth-cache --non-interactive --username "$WP_ORG_USERNAME" --password "$WP_ORG_PASSWORD"
+cd svn && svn commit -m "Deploy version $VERSION" --no-auth-cache --non-interactive --username "$WP_ORG_USERNAME" --password "$WP_ORG_PASSWORD"
 
 # Remove SVN temp dir
-rm -fR svn
+cd "$PLUGIN_BUILDS_PATH" && rm -fR svn
