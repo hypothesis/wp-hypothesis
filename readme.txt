@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: timmmmyboy, BigBlueHat, JakeHartnell, greatislander
 Tags: hypothesis, annotation, comments
-Requires at least: 3.0.1
+Requires at least: 3.7
 Tested up to: 5.2.2
 Stable tag: 0.6.0
 License: BSD
