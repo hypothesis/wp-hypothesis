@@ -1,10 +1,6 @@
 language: php
 php:
 - '7.2'
-notifications:
-  email:
-    on_success: never
-    on_failure: change
 branches:
   only:
   - master
@@ -26,5 +22,5 @@ deploy:
   skip_cleanup: true
   script: ./bin/deploy.sh
   on:
-    branch: master
+    tags: true
     php: 7.2
