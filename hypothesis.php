@@ -1,14 +1,18 @@
 <?php
-/*
+/**
  * Plugin Name: Hypothesis
- * Plugin URI: http://hypothes.is/
- * Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your Wordpress site to enable any user to use Hypothesis without installing any extensions.
- * Author: The Hypothesis Project and contributors
+ * Plugin URI: https://hypothes.is/
+ * Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your WordPress site to enable any user to use Hypothesis without installing any extensions.
  * Version: 0.6.0
- * Author URI: http://hypothes.is/
- * Text Domain:     hypothesis
- * Domain Path:     /languages
- */
+ * Requires at least: 3.7
+ * Requires PHP: 5.6
+ * Author: The Hypothesis Project and contributors
+ * Author URI: https://hypothes.is/
+ * License: BSD
+ * License URI: https://opensource.org/licenses/BSD-2-Clause
+ * Text Domain: hypothesis
+ * Domain Path: /languages
+ **/
 
 // Exit if called directly.
 defined( 'ABSPATH' ) || die( 'Cannot access pages directly.' );
