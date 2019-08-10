@@ -15,8 +15,8 @@ if [[ -z "$WP_ORG_PASSWORD" ]]; then
     exit 1
 fi
 
-if [[ -z "$TRAVIS_BRANCH" || "$TRAVIS_BRANCH" != "master" ]]; then
-    echo "Build branch is required and must be 'master'" 1>&2
+if [[ -z "$TRAVIS_TAG" ]]; then
+    echo "Build tag is required" 1>&2
     exit 0
 fi
 
