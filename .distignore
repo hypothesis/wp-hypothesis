@@ -8,3 +8,4 @@ builds
 composer.json
 composer.lock
 package.json
+phpcs.xml
