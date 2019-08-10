@@ -1,0 +1,10 @@
+.distignore
+.editorconfig
+.git
+.gitignore
+.travis.yml
+bin
+builds
+composer.json
+composer.lock
+package.json
