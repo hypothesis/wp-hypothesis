@@ -14,16 +14,7 @@ Stable versions are available on the
 
 ## Publishing
 
-We use [wp-release.sh](https://github.com/sun/wordpress-git-svn-release) to
-handle the somewhat insane world of git/svn repo juggling.
-
-To cut a release:
-
-0. install `wp-release.sh`
-1. customize `.wp-release.conf` (if needed)
-2. run `wp-release` from within the root of this repo's local working copy
-3. follow the instructions
-4. check the WordPress.org page to be sure it worked
+New releases are automatically published to WordPress.org via Travis CI (using [this script](bin/deploy.sh)) whenever the version in [hypothesis.php](hypothesis.php) is incremented. Translation files will be updated as well. This method is largely based on the process described by [Iain Poulson](https://github.com/polevaultweb) in [this blog post](https://deliciousbrains.com/deploying-wordpress-plugins-travis/), and also makes use of the [wp-cli](https://wp-cli.org) `i18n` command.
 
 ## License
 
