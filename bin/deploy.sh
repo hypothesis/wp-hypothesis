@@ -5,6 +5,11 @@ if [[ -z "$TRAVIS" ]]; then
     exit 1
 fi
 
+if [[ -z "$WP_ORG_USERNAME" ]]; then
+    echo "WordPress.org username not set" 1>&2
+    exit 1
+fi
+
 if [[ -z "$WP_ORG_PASSWORD" ]]; then
     echo "WordPress.org password not set" 1>&2
     exit 1
@@ -15,11 +20,10 @@ if [[ -z "$TRAVIS_BRANCH" || "$TRAVIS_BRANCH" != "master" ]]; then
     exit 0
 fi
 
-WP_ORG_USERNAME="greatislander"
 PLUGIN="hypothesis"
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 PLUGIN_BUILDS_PATH="$PROJECT_ROOT/builds"
-VERSION=$(/usr/bin/php -f "$PROJECT_ROOT/bin/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
+VERSION=$(php -f "$PROJECT_ROOT/bin/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
 ZIP_FILE="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION.zip"
 
 # Ensure the zip file for the current version has been built
