@@ -26,7 +26,7 @@ PLUGIN_BUILDS_PATH="$PROJECT_ROOT/builds"
 VERSION=$(php -f "$PROJECT_ROOT/bin/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
 BUILD_DIRECTORY="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION"
 
-# Ensure the zip file for the current version has been built
+# Ensure the current version has been built
 if [ ! -d "$BUILD_DIRECTORY" ]; then
     echo "Built plugin directory $BUILD_DIRECTORY does not exist" 1>&2
     exit 1
