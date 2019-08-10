@@ -22,6 +22,7 @@ Hypothesis is a web annotation tool that allows users to provide commentary, ref
 == Changelog ==
 
 = 0.6.0 =
+* Fix PDF links in multisite and other customized installations (props @boonbgorges).
 * Tested up to WordPress 5.2.2.
 * Updated to current WordPress Coding Standards.
 * Automated deploys to WordPress plugin directory.
