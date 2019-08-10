@@ -47,7 +47,7 @@ cd "$PLUGIN_BUILDS_PATH"
 rm -fR svn
 
 # Checkout the SVN repo
-svn co -q "svn+ssh://svn@svn.wp-plugins.org/$PLUGIN" svn
+svn co -q "http://$WP_ORG_USERNAME@svn.wp-plugins.org/$PLUGIN" svn
 
 # Move out the trunk directory to a temp location
 mv svn/trunk ./svn-trunk
