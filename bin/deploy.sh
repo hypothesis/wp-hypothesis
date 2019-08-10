@@ -24,11 +24,11 @@ PLUGIN="hypothesis"
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 PLUGIN_BUILDS_PATH="$PROJECT_ROOT/builds"
 VERSION=$(php -f "$PROJECT_ROOT/bin/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
-ZIP_FILE="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION.zip"
+BUILD_DIRECTORY="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION"
 
 # Ensure the zip file for the current version has been built
-if [ ! -f "$ZIP_FILE" ]; then
-    echo "Built zip file $ZIP_FILE does not exist" 1>&2
+if [ ! -d "$BUILD_DIRECTORY" ]; then
+    echo "Built plugin directory $BUILD_DIRECTORY does not exist" 1>&2
     exit 1
 fi
 
@@ -42,10 +42,6 @@ if [ $error == 0 ]; then
 fi
     
 cd "$PLUGIN_BUILDS_PATH"
-# Remove any unzipped dir so we start from scratch
-rm -fR "$PLUGIN"
-# Unzip the built plugin
-unzip -q -o "$ZIP_FILE"
 
 # Clean up any previous svn dir
 rm -fR svn
@@ -58,7 +54,7 @@ mv svn/trunk ./svn-trunk
 # Create trunk directory
 mkdir svn/trunk
 # Copy our new version of the plugin into trunk
-rsync -r -p $PLUGIN/* svn/trunk
+rsync -r -p $BUILD_DIRECTORY/* svn/trunk
 
 # Copy all the .svn folders from the checked out copy of trunk to the new trunk.
 # This is necessary as the Travis container runs Subversion 1.6 which has .svn dirs in every sub dir
@@ -87,7 +83,7 @@ rm -fR svn-trunk
 
 # Add new version tag
 mkdir svn/tags/$VERSION
-rsync -r -p $PLUGIN/* svn/tags/$VERSION
+rsync -r -p $BUILD_DIRECTORY/* svn/tags/$VERSION
 
 # Add new files to SVN
 svn stat svn | grep '^?' | awk '{print $2}' | xargs -I x svn add x@
