@@ -40,7 +40,7 @@ add_action( 'wp', 'add_hypothesis' );
  * Wrapper for the primary Hypothesis wp_enqueue call.
  */
 function enqueue_hypothesis() {
-	wp_enqueue_script( 'hypothesis', 'https://hypothes.is/embed.js', array(), HYPOTHESIS_PLUGIN_VERSION, true );
+	wp_enqueue_script( 'hypothesisEmbed', plugins_url( 'js/pagefit.js', __FILE__ ), array(), HYPOTHESIS_PLUGIN_VERSION, true );
 }
 
 /**
