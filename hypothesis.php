@@ -4,7 +4,7 @@
  * Plugin URI: https://hypothes.is/
  * Description: Hypothesis is an open platform for the collaborative evaluation of knowledge. This plugin embeds the necessary scripts in your WordPress site to enable any user to use Hypothesis without installing any extensions.
  * Version: 0.6.0
- * Requires at least: 6.0
+ * Requires at least: 6.2
  * Requires PHP: 7.4
  * Author: The Hypothesis Project and contributors
  * Author URI: https://hypothes.is/

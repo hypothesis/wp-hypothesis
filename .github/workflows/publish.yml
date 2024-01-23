@@ -1,0 +1,25 @@
+name: Publish
+concurrency:
+  group: ${{ github.event.repository.name }}-deploy
+  cancel-in-progress: true
+on:
+  release:
+    types:
+      - published
+jobs:
+  publish-wp-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Make language files
+        shell: bash
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          php wp-cli.phar i18n make-pot . "languages/hypothesis.pot"
+      - name: Publish WordPress Plugin
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.WP_SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.WP_SVN_PASSWORD }}
+          SLUG: hypothesis
