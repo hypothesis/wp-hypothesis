@@ -8,16 +8,22 @@
     },
     "type": "wordpress-plugin",
     "license": "BSD-2-Clause",
-    "require": {},
+    "require": {
+        "php": ">=7.4"
+    },
     "require-dev": {
-      "squizlabs/php_codesniffer": "^3.0",
-      "wp-coding-standards/wpcs": "^2.0"
+        "squizlabs/php_codesniffer": "^3.8",
+        "wp-coding-standards/wpcs": "^3.0"
     },
     "scripts": {
-      "test": "@standards",
-      "standards": [
-        "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
-        "vendor/bin/phpcs --standard=phpcs.xml --extensions=php ."
-      ]
+        "test": "@lint",
+        "lint": "phpcs --standard=phpcs.xml --extensions=php .",
+        "checkformatting": "@lint",
+        "format": "phpcbf --extensions=php ."
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
