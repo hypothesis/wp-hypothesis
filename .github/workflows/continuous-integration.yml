@@ -1,0 +1,27 @@
+name: Continuous integration
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2', '8.3']
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Use PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+    - name: Cache the vendor dir
+      uses: actions/cache@v4
+      with:
+        path: vendor
+        key: ${{ runner.os }}-${{ matrix.php-version }}-vendor-${{ hashFiles('composer.lock') }}
+    - name: Install
+      run: composer install --no-interaction --prefer-dist
+    - name: Lint
+      run: composer lint
