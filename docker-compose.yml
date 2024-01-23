@@ -1,0 +1,20 @@
+version: '3'
+services:
+  wordpress:
+    image: wordpress:6.4-apache
+    ports:
+      - '8080:80'
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: hypothesis
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/hypothesis
+  mysql:
+    image: mysql:8.3
+    environment:
+      MYSQL_ROOT_PASSWORD: hypothesis
+      MYSQL_DATABASE: wordpress
