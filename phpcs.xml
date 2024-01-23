@@ -17,6 +17,5 @@
 	<exclude-pattern>vendor/</exclude-pattern>
 
 	<!-- WordPress Coding Standards -->
-	<rule ref="WordPress-Core"></rule>
-	<rule ref="WordPress-Extra"></rule>
+	<rule ref="WordPress-Extra" />
 </ruleset>
