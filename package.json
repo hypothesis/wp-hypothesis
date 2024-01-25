@@ -1,6 +1,6 @@
 {
   "name": "hypothesis",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "Gruntfile.js",
   "author": "The Hypothesis Project and contributors",
   "repository": "http://github.com/hypothesis/wp-hypothesis/",
