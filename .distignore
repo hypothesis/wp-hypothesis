@@ -11,3 +11,4 @@ package.json
 package-lock.json
 phpcs.xml
 vendor
+wp-cli.phar
