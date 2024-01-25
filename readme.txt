@@ -3,7 +3,7 @@ Contributors: timmmmyboy, BigBlueHat, JakeHartnell, greatislander, acelaya
 Tags: hypothesis, annotation, comments
 Requires at least: 6.2
 Tested up to: 6.4.2
-Stable tag: 0.6.0
+Stable tag: 0.7.0
 License: BSD
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -20,6 +20,10 @@ Hypothesis is a web annotation tool that allows users to provide commentary, ref
 3. You're done! The frontend of your site should now be enabled to use Hypothesis.
 
 == Changelog ==
+
+= 0.7.0 =
+* Add support for WordPress v6
+* Update to WordPress coding standard v3
 
 = 0.6.0 =
 * Fix PDF links in multisite and other customized installations (props @boonbgorges).
