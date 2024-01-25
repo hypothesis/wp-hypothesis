@@ -4,18 +4,16 @@
 
   <!-- Show colors in console -->
   <arg value="-colors"/>
-	<!-- Do not print warnings -->
+  <!-- Do not print warnings -->
   <arg value="n"/>
   <!-- Show sniff codes in all reports -->
   <arg value="s"/>
 
-	<!-- Exclude bin -->
-	<exclude-pattern>bin/</exclude-pattern>
-	<!-- Exclude tests -->
-	<exclude-pattern>tests/</exclude-pattern>
-	<!-- Exclude vendor -->
-	<exclude-pattern>vendor/</exclude-pattern>
+  <!-- Exclude tests -->
+  <exclude-pattern>tests/</exclude-pattern>
+  <!-- Exclude vendor -->
+  <exclude-pattern>vendor/</exclude-pattern>
 
-	<!-- WordPress Coding Standards -->
-	<rule ref="WordPress-Extra" />
+  <!-- WordPress Coding Standards -->
+  <rule ref="WordPress-Extra" />
 </ruleset>

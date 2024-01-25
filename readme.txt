@@ -1,8 +1,8 @@
-=== Plugin Name ===
-Contributors: timmmmyboy, BigBlueHat, JakeHartnell, greatislander
+=== Hypothesis ===
+Contributors: timmmmyboy, BigBlueHat, JakeHartnell, greatislander, acelaya
 Tags: hypothesis, annotation, comments
-Requires at least: 3.7
-Tested up to: 5.2.2
+Requires at least: 6.2
+Tested up to: 6.4.2
 Stable tag: 0.6.0
 License: BSD
 License URI: http://opensource.org/licenses/BSD-2-Clause

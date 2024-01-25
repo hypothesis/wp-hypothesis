@@ -1,12 +1,13 @@
 .distignore
 .editorconfig
 .git
+.github
 .gitignore
-.travis.yml
-bin
-builds
 composer.json
 composer.lock
+docker-compose.yml
 node_modules
 package.json
+package-lock.json
 phpcs.xml
+vendor
