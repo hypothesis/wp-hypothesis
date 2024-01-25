@@ -2,7 +2,7 @@
 
 Stable versions are available on the [Hypothesis plugin page on WordPress.org](https://wordpress.org/plugins/hypothesis/).
 
-## Install Directions
+## Install this plugin
 
 1. Visit your WordPress plugins page (/wp-admin/plugins.php)
 2. Click the Add New button
@@ -10,6 +10,13 @@ Stable versions are available on the [Hypothesis plugin page on WordPress.org](h
 4. Click Install Now.
 5. Click Activate
 6. Visit your WordPress Settings > Hypothesis page to configure how it works on your site
+
+## Development
+
+1. Install `php` and the `dom` and `mbstring` extensions.
+2. [Download Composer](https://getcomposer.org/download/), the PHP package manager.
+3. Run `make dev`. This will start a local WordPress instance with this plugin mounted on it.
+4. Access http://localhost:8080 (the first time you'll have to finish setting up WordPress by following presented instructions)
 
 ## Publishing
 
