@@ -1,5 +1,7 @@
 <?php
 
+namespace Hypothesis;
+
 /**
  * Create settings page (see https://codex.wordpress.org/Creating_Options_Pages)
  */

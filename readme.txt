@@ -13,7 +13,7 @@ An open platform for the collaborative evaluation of knowledge.
 
 Hypothesis is a web annotation tool that allows users to provide commentary, references, and insight on top of news, blogs, scientific articles, books, terms of service, ballot initiatives, legislation and regulations, software code and more. You can find out more at [http://hypothes.is/](http://hypothes.is/)
 
-This plugin will allow you to automatically embed Hypothesis in your site, and integrate with the Hypothesis annotations API.
+This plugin will allow you to automatically embed Hypothesis in your site.
 
 Without this plugin, you would have to follow [these steps](https://web.hypothes.is/help/embedding-hypothesis-in-websites-and-platforms/), but with this plugin you only need to check some checkboxes, and you will be good to go.
 
