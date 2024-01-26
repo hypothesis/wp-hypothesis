@@ -53,4 +53,4 @@ Create a [new GitHub release](https://github.com/hypothesis/wp-hypothesis/releas
 
 ## License
 
-[BSD](http://opensource.org/licenses/BSD-2-Clause)
+[BSD-2-Clause](http://opensource.org/licenses/BSD-2-Clause)

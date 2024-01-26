@@ -8,20 +8,30 @@
  * Requires PHP: 7.4
  * Author: The Hypothesis Project and contributors
  * Author URI: https://hypothes.is/
- * License: BSD
+ * License: BSD-2-Clause
  * License URI: https://opensource.org/licenses/BSD-2-Clause
  * Text Domain: hypothesis
  * Domain Path: /languages
  **/
 
+namespace Hypothesis;
+
+use function add_action;
+use function define;
+use function defined;
+use function get_option;
+use function is_admin;
+use function load_plugin_textdomain as wp_load_plugin_textdomain;
+use function wp_enqueue_script;
+
 // Exit if called directly.
 defined( 'ABSPATH' ) || die( 'Cannot access pages directly.' );
 
 // Load textdomain
-function hypothesis_load_plugin_textdomain() {
-	load_plugin_textdomain( 'hypothesis', false, basename( __DIR__ ) . '/languages/' );
+function load_plugin_textdomain() {
+	wp_load_plugin_textdomain( 'hypothesis', false, basename( __DIR__ ) . '/languages/' );
 }
-add_action( 'plugins_loaded', 'hypothesis_load_plugin_textdomain' );
+add_action( 'plugins_loaded', 'Hypothesis\load_plugin_textdomain' );
 
 define( 'HYPOTHESIS_PLUGIN_VERSION', '0.7.1' );
 
@@ -34,7 +44,7 @@ if ( is_admin() ) {
 /**
  * Add Hypothesis based on conditions set in the plugin settings.
  */
-add_action( 'wp', 'add_hypothesis' );
+add_action( 'wp', 'Hypothesis\add_scripts' );
 
 /**
  * Wrapper for the primary Hypothesis wp_enqueue call.
@@ -46,7 +56,7 @@ function enqueue_hypothesis() {
 /**
  * Add Hypothesis script(s) to front end.
  */
-function add_hypothesis() {
+function add_scripts() {
 	$options   = get_option( 'wp_hypothesis_options' );
 	$posttypes = HypothesisSettingsPage::get_posttypes();
 
