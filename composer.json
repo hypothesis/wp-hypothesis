@@ -7,7 +7,7 @@
       "source": "https://github.com/hypothesis/wp-hypothesis/"
     },
     "type": "wordpress-plugin",
-    "license": "BSD-2-Clause",
+    "license": "BSD-3-Clause",
     "require": {
         "php": ">=7.4"
     },
