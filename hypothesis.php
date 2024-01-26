@@ -8,7 +8,7 @@
  * Requires PHP: 7.4
  * Author: The Hypothesis Project and contributors
  * Author URI: https://hypothes.is/
- * License: BSD
+ * License: BSD-2-Clause
  * License URI: https://opensource.org/licenses/BSD-2-Clause
  * Text Domain: hypothesis
  * Domain Path: /languages
