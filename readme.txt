@@ -3,7 +3,7 @@ Contributors: timmmmyboy, BigBlueHat, JakeHartnell, greatislander, acelaya
 Tags: hypothesis, annotation, comments
 Requires at least: 6.2
 Tested up to: 6.4.2
-Stable tag: 0.7.1
+Stable tag: 0.7.2
 License: BSD-3-Clause
 License URI: http://opensource.org/licenses/BSD-3-Clause
 
@@ -27,6 +27,11 @@ Without this plugin, you would have to follow [these steps](https://web.hypothes
 3. You're done! The frontend of your site should now be enabled to use Hypothesis.
 
 == Changelog ==
+
+= 0.7.2 =
+* Migrate to BSD-3-Clause license
+* Document third party integration
+* Use `Hypothesis` namespace in PHP code
 
 = 0.7.1 =
 * Do not include wp-cli.phar on releases
