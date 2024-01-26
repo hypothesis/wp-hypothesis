@@ -4,6 +4,14 @@ Stable versions are available on the [Hypothesis plugin page on WordPress.org](h
 
 ## Install this plugin
 
+### Via composer
+
+This plugin can be installed with composer, from the standard package registry (packagist.org)
+
+    composer require hypothesis/wp-hypothesis
+
+### Via WordPress plugins directory
+
 1. Visit your WordPress plugins page (/wp-admin/plugins.php)
 2. Click the Add New button
 3. Search the WordPress plugins directory for Hypothes.is
@@ -26,6 +34,9 @@ Follow these steps to publish a new plugin version.
 2. **Update readme.txt**, adding the new version with its list of changes, under the `Changelog` section.
 3. **Merge** the changes into the `main` branch[^1]. We use [Semantic Versioning](https://semver.org/#semantic-versioning-200).
 4. **Create a tag** pointing at the version-change commit and generate a **new GitHub release** (details follow). Publishing a GitHub release will kick off a GitHub Action that will publish the plugin to wordpress.org
+
+> [!NOTE]
+> The package will be automatically published in packagist.org just by pushing the new git tag.
 
 ### Creating a GitHub release
 
