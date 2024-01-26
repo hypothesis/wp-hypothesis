@@ -1,6 +1,7 @@
 .distignore
 .editorconfig
 .git
+.gitattributes
 .github
 .gitignore
 composer.json
