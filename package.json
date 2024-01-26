@@ -4,6 +4,6 @@
   "main": "Gruntfile.js",
   "author": "The Hypothesis Project and contributors",
   "repository": "http://github.com/hypothesis/wp-hypothesis/",
-  "license": "BSD-2-Clause",
+  "license": "BSD-3-Clause",
   "devDependencies": {}
 }

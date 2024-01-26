@@ -4,8 +4,8 @@ Tags: hypothesis, annotation, comments
 Requires at least: 6.2
 Tested up to: 6.4.2
 Stable tag: 0.7.1
-License: BSD-2-Clause
-License URI: http://opensource.org/licenses/BSD-2-Clause
+License: BSD-3-Clause
+License URI: http://opensource.org/licenses/BSD-3-Clause
 
 An open platform for the collaborative evaluation of knowledge.
 
