@@ -4,6 +4,7 @@
 .gitattributes
 .github
 .gitignore
+.wordpress-org
 composer.json
 composer.lock
 docker-compose.yml
