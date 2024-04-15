@@ -1,7 +1,7 @@
 version: '3'
 services:
   wordpress:
-    image: wordpress:6.4-apache
+    image: wordpress:6.5-apache
     ports:
       - '8080:80'
     environment:
