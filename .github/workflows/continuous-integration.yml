@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Use PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@2.40.0
       with:
         php-version: ${{ matrix.php-version }}
     - name: Cache the vendor dir
